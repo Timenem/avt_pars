@@ -11,6 +11,9 @@ class AvitoParser(object):
     def __set_config(self):
         """ private method
         run browser"""
+        options = Options()
+        options.add_argument('--headless')
+        self.driver = uc.Chrome(browser_version=self.browser_version, options=options)
 
     def __get_url(self):
         """ get page"""
