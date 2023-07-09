@@ -29,7 +29,7 @@ class AvitoParser(object):
             self.driver.find_element("[data-marker='pagination-button/next']").click()
             self.pages_count -= 1
 
-    def __parse_page(self):
+      def __parse_page(self):
         """ private method
          parse one page"""
         titles = self.driver.find_elements(By.CSS_SELECTOR, "[data-marker='item']")
@@ -44,10 +44,15 @@ class AvitoParser(object):
         self.save_data()
 
     def save_data(self):
-        """ save data """
-        pass 
+        with open('\items.json', encoding='utf-8') as f:
+            json.dump(self.data, f, ensure_ascii=False, indent=4)
+
     def parse(self):
-        """ main method"""
+        """main method"""
+        self.__set_up()
+        self.__get_url()
+        self.__paginator()
+
 
 if __name__ == '__main__':
     AvitoParser()
